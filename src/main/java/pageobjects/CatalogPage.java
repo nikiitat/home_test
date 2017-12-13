@@ -1,4 +1,4 @@
-package framework;
+package pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +18,7 @@ public class CatalogPage extends PageFunctionalities{
         PageFactory.initElements(getWebDriver(), this);
     }
 
-    public AddNewProductPage addNewProduct(){
+    public AddNewProductPage addNewProduct() {
         waitForElementClickable(addNewProduct);
         addNewProduct.click();
         return new AddNewProductPage(getWebDriver());

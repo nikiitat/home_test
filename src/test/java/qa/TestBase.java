@@ -1,6 +1,6 @@
 package qa;
 
-import framework.BrowserInitializer;
+import pageobjects.BrowserInitializer;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 

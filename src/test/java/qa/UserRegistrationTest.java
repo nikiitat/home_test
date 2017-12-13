@@ -2,9 +2,9 @@ package qa;
 
 
 import api.ErrorMessage;
-import framework.BrowserInitializer;
-import framework.MainPage;
-import framework.SignUpPage;
+import pageobjects.BrowserInitializer;
+import pageobjects.MainPage;
+import pageobjects.SignUpPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;

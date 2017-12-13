@@ -1,10 +1,10 @@
 package qa;
 
 import api.ErrorMessage;
-import framework.AddNewProductPage;
-import framework.AdminPage;
-import framework.BrowserInitializer;
-import framework.CatalogPage;
+import pageobjects.AddNewProductPage;
+import pageobjects.AdminPage;
+import pageobjects.BrowserInitializer;
+import pageobjects.CatalogPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;

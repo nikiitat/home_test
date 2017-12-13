@@ -1,6 +1,6 @@
 package api;
 
-import framework.PageFunctionalities;
+import pageobjects.PageFunctionalities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 

@@ -1,4 +1,4 @@
-package framework;
+package pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,12 +21,15 @@ public class AdminPage extends PageFunctionalities {
     @FindBy(css = "a[href='http://localhost/litecart/admin/?app=catalog&doc=catalog']")
     private WebElement catalog;
 
-    public AdminPage (WebDriver webDriver){
+    @FindBy(css = "a[href='http://localhost/litecart/admin/?app=countries&doc=countries']")
+    private WebElement countries;
+
+    public AdminPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(getWebDriver(), this);
     }
 
-    public void login(){
+    public void login() {
         getWebDriver().navigate().to("http://localhost/litecart/admin/");
         waitForElementVisible(username);
         username.clear();
@@ -41,9 +44,15 @@ public class AdminPage extends PageFunctionalities {
 //        assertTrue(isElementPresent(By.cssSelector("img[alt=\"My Store\"]")));
     }
 
-    public CatalogPage openCatalogPage(){
+    public CatalogPage openCatalogPage() {
         waitForElementClickable(catalog);
         catalog.click();
         return new CatalogPage(getWebDriver());
+    }
+
+    public CountriesPage openCountriesPage() {
+        waitForElementClickable(countries);
+        countries.click();
+        return new CountriesPage(getWebDriver());
     }
 }
