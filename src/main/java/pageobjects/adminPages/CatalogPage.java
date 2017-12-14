@@ -1,14 +1,15 @@
-package pageobjects;
+package pageobjects.adminPages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pageobjects.PageFunctionalities;
 
 /**
  * Created by nikitatertytskyi on 10.09.17.
  */
-public class CatalogPage extends PageFunctionalities{
+public class CatalogPage extends PageFunctionalities {
 
     @FindBy(css = "a[href*=edit_product]")
     private WebElement addNewProduct;

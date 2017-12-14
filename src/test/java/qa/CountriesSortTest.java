@@ -6,9 +6,9 @@ package qa;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
-import pageobjects.AdminPage;
+import pageobjects.adminPages.AdminPage;
 import pageobjects.BrowserInitializer;
-import pageobjects.CountriesPage;
+import pageobjects.adminPages.CountriesPage;
 
 
 public class CountriesSortTest extends TestBase {

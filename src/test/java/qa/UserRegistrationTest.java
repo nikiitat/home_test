@@ -3,8 +3,8 @@ package qa;
 
 import api.ErrorMessage;
 import pageobjects.BrowserInitializer;
-import pageobjects.MainPage;
-import pageobjects.SignUpPage;
+import pageobjects.shopPages.MainPage;
+import pageobjects.shopPages.SignUpPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;

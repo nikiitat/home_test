@@ -1,9 +1,10 @@
-package pageobjects;
+package pageobjects.shopPages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pageobjects.PageFunctionalities;
 
 /**
  * Created by nikitatertytskyi on 26.08.17.
