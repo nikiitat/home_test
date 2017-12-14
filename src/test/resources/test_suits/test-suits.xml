@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Full suite">
+
+    <listeners>
+            <listener class-name="listener.Listener" />
+    </listeners>
+
+    <test name="CountriesSortTest">
+        <classes>
+            <class name="qa.CountriesSortTest"/>
+        </classes>
+    </test>
+
+</suite>

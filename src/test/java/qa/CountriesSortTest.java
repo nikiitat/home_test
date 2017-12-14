@@ -29,10 +29,10 @@ public class CountriesSortTest extends TestBase {
         countriesPage.sort();
     }
 
-    @Test
-    public void mySortingGeoZones() {
-        adminPage.login();
-        countriesPage = adminPage.openCountriesPage();
-        countriesPage.sortZones();
-    }
+//    @Test
+//    public void mySortingGeoZones() {
+//        adminPage.login();
+//        countriesPage = adminPage.openCountriesPage();
+//        countriesPage.sortZones();
+//    }
 }
