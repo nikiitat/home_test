@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.testng', name:'testng', version:'6.10'
+    compile group: 'org.testng', name:'testng', version:'6.11'
     compile group: 'org.seleniumhq.selenium', name:'selenium-java', version:'3.4.0'
     compile(group: 'org.uncommons', name: 'reportng', version:'1.1.4') {
         exclude(module: 'testng')
@@ -22,7 +22,7 @@ dependencies {
 test {
     useTestNG()
     options {
-        listener << 'org.uncommons.reportng.HTMLReporter'
-        listener << 'org.uncommons.reportng.JUnitXMLReporter'
+        listeners << 'org.uncommons.reportng.HTMLReporter'
+        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
     }
 }
