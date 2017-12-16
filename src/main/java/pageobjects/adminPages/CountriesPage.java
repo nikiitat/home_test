@@ -3,6 +3,7 @@ package pageobjects.adminPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pageobjects.PageFunctionalities;
 
@@ -17,9 +18,17 @@ import static org.testng.Assert.assertTrue;
  */
 public class CountriesPage extends PageFunctionalities {
 
+    @FindBy(css = "a[href='http://localhost/litecart/admin/logout.php']")
+    private WebElement logout;
+
     public CountriesPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(getWebDriver(), this);
+    }
+
+    public void logout() {
+        waitForElementVisible(logout);
+        logout.click();
     }
 
     public void sort() {

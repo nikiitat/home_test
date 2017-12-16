@@ -27,12 +27,13 @@ public class CountriesSortTest extends TestBase {
         adminPage.login();
         countriesPage = adminPage.openCountriesPage();
         countriesPage.sort();
+        countriesPage.logout();
     }
 
-//    @Test
-//    public void mySortingGeoZones() {
-//        adminPage.login();
-//        countriesPage = adminPage.openCountriesPage();
-//        countriesPage.sortZones();
-//    }
+    @Test
+    public void mySortingGeoZones() {
+        adminPage.login();
+        countriesPage = adminPage.openCountriesPage();
+        countriesPage.sortZones();
+    }
 }

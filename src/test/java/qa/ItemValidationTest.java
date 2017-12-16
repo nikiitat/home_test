@@ -19,6 +19,6 @@ public class ItemValidationTest extends TestBase {
 
     @Test
     public void checkItem(){
-
+        mainPage.openMainPage();
     }
 }
