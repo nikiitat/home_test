@@ -9,9 +9,9 @@ public class ProductAttributes {
     private String newPrice;
 
     public ProductAttributes(final String title, final String oldPrice, final String newPrice){
-        this.title = "";
-        this.oldPrice = "";
-        this.newPrice = "";
+        this.title = title;
+        this.oldPrice = oldPrice;
+        this.newPrice = newPrice;
     }
 
     public void setTitle(String title) {
@@ -36,5 +36,25 @@ public class ProductAttributes {
 
     public String getNewPrice() {
         return newPrice;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        ProductAttributes that = (ProductAttributes) o;
+
+        if (title != null ? !title.equals(that.title) : that.title != null) {
+            return false;
+        }
+        if (oldPrice != null ? !oldPrice.equals(that.oldPrice) : that.oldPrice != null) {
+            return false;
+        }
+        return newPrice != null ? newPrice.equals(that.newPrice) : that.newPrice == null;
     }
 }
