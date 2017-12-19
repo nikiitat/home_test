@@ -9,9 +9,9 @@
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
     </listeners>
 
-    <test name="CountriesSortTest">
+    <test name="ItemValidationTest">
         <classes>
-            <class name="qa.CountriesSortTest"/>
+            <class name="qa.ItemValidationTest"/>
         </classes>
     </test>
 

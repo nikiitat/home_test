@@ -17,6 +17,7 @@ dependencies {
     compile(group: 'org.uncommons', name: 'reportng', version:'1.1.4') {
         exclude(module: 'testng')
     }
+    compile group: 'com.google.inject', name: 'guice', version: '4.0'
 }
 
 test {

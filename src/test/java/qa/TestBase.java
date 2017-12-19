@@ -1,6 +1,6 @@
 package qa;
 
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import pageobjects.BrowserInitializer;
 
@@ -15,7 +15,7 @@ public class TestBase {
         BrowserInitializer.getWebDriver();
     }
 
-    @AfterClass
+    @AfterTest(alwaysRun = true)
     public void stop() {
         BrowserInitializer.closeWebDriver();
     }

@@ -16,9 +16,9 @@ public class BrowserInitializer {
     private static WebDriver driver;
     private static String browser = "chrome";
 
-//    public BrowserInitializer(){
-//
-//    }
+    public BrowserInitializer() {
+
+    }
 
     public static WebDriver getWebDriver() {
         if (driver == null) {
@@ -42,7 +42,7 @@ public class BrowserInitializer {
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 PageFactory.initElements(driver, driver);
 
-            } catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

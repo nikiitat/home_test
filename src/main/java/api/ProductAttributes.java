@@ -8,7 +8,7 @@ public class ProductAttributes {
     private String oldPrice;
     private String newPrice;
 
-    public ProductAttributes(final String title, final String oldPrice, final String newPrice){
+    public ProductAttributes(final String title, final String oldPrice, final String newPrice) {
         this.title = title;
         this.oldPrice = oldPrice;
         this.newPrice = newPrice;

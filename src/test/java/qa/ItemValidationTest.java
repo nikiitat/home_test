@@ -17,14 +17,14 @@ public class ItemValidationTest extends TestBase {
     private MainPage mainPage;
     private ProductPage productPage;
 
-    public ItemValidationTest(){
+    public ItemValidationTest() {
         webDriver = BrowserInitializer.getWebDriver();
         mainPage = new MainPage(webDriver);
         productPage = new ProductPage(webDriver);
     }
 
     @Test
-    public void checkItem(){
+    public void checkItemDescription() {
         mainPage.openMainPage();
         final ProductAttributes mainPageItem = mainPage.getProductAttributes();
         productPage = mainPage.openProductPage();
