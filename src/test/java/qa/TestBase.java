@@ -12,6 +12,7 @@ public class TestBase {
 
     @BeforeSuite
     public void start() {
+        String browser = System.getProperty("browser");
         BrowserInitializer.getWebDriver();
     }
 
