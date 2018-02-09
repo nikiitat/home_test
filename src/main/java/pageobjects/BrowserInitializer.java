@@ -3,10 +3,11 @@ package pageobjects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.PageFactory;
-import utils.GetPropertyValues;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,31 +22,16 @@ public class BrowserInitializer {
     }
 
     public static WebDriver getWebDriver() {
-        if (driver == null) {
-            try {
-                final GetPropertyValues getPropertyValues = new GetPropertyValues();
-                if (browser.equalsIgnoreCase("firefox")) {
-
-                    System.setProperty("webdriver.gecko.driver", getPropertyValues.getFireFoxDriverPath());
-                    driver = new FirefoxDriver();
-
-                } else if (browser.equalsIgnoreCase("chrome")) {
-
-//                    DesiredCapabilities caps = new DesiredCapabilities();
-                    System.setProperty("webdriver.chrome.driver", getPropertyValues.getChromeDriverPath());
-                    driver = new ChromeDriver();
-
-                } else {
-                    throw new RuntimeException("Unsupported Browser" + browser);
-                }
-
-                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                PageFactory.initElements(driver, driver);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (browser.equals(BrowserType.FIREFOX)) {
+            System.setProperty("webdriver.firefox.bin", "/Applications/Firefox 2.app/Contents/MacOS/firefox-bin");
+            driver = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+        } else if (browser.equals(BrowserType.CHROME)) {
+            driver = new ChromeDriver();
+        } else if (browser.equals(BrowserType.SAFARI)) {
+            driver = new SafariDriver();
         }
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        PageFactory.initElements(driver, driver);
         return driver;
     }
 
