@@ -31,7 +31,6 @@ public class BrowserInitializer {
 
                 } else if (browser.equalsIgnoreCase("chrome")) {
 
-//                    DesiredCapabilities caps = new DesiredCapabilities();
                     System.setProperty("webdriver.chrome.driver", getPropertyValues.getChromeDriverPath());
                     driver = new ChromeDriver();
 
