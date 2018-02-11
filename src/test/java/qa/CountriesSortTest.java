@@ -7,8 +7,8 @@ package qa;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import pageobjects.adminPages.AdminPage;
-import pageobjects.BrowserInitializer;
 import pageobjects.adminPages.CountriesPage;
+import supportfunctions.BrowserInitializer;
 
 
 public class CountriesSortTest extends TestBase {
@@ -17,7 +17,7 @@ public class CountriesSortTest extends TestBase {
     private CountriesPage countriesPage;
 
     public CountriesSortTest() {
-        webDriver = BrowserInitializer.getWebDriver();
+        webDriver =  BrowserInitializer.getWebDriver();
         adminPage = new AdminPage(webDriver);
         countriesPage = new CountriesPage(webDriver);
     }
@@ -26,7 +26,7 @@ public class CountriesSortTest extends TestBase {
     public void mySortingCountriesTest() {
         adminPage.login();
         countriesPage = adminPage.openCountriesPage();
-        countriesPage.sort();
+//        countriesPage.sort();
         countriesPage.logout();
     }
 

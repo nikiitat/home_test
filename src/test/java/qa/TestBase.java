@@ -1,8 +1,9 @@
 package qa;
 
-import org.testng.annotations.AfterTest;
+import org.openqa.selenium.remote.BrowserType;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import pageobjects.BrowserInitializer;
+import supportfunctions.BrowserInitializer;
 
 
 /**
@@ -12,11 +13,11 @@ public class TestBase {
 
     @BeforeSuite
     public void start() {
-        String browser = System.getProperty("browser");
+        String browser = System.getProperty("browser", BrowserType.CHROME);
         BrowserInitializer.getWebDriver();
     }
 
-    @AfterTest(alwaysRun = true)
+    @AfterSuite(alwaysRun = true)
     public void stop() {
         BrowserInitializer.closeWebDriver();
     }

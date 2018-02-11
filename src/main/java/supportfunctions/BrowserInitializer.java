@@ -1,4 +1,4 @@
-package pageobjects;
+package supportfunctions;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +21,10 @@ public class BrowserInitializer {
 
     }
 
+//    public static void initBrowser(final String browserName) {
+//        browser = browserName;
+//    }
+
     public static WebDriver getWebDriver() {
         if (browser.equals(BrowserType.FIREFOX)) {
             System.setProperty("webdriver.firefox.bin", "/Applications/Firefox 2.app/Contents/MacOS/firefox-bin");
@@ -37,6 +41,5 @@ public class BrowserInitializer {
 
     public static void closeWebDriver() {
         driver.quit();
-        driver = null;
     }
 }

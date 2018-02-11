@@ -1,4 +1,4 @@
-package pageobjects;
+package supportfunctions;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +17,7 @@ public class PageFunctionalities {
 
     public PageFunctionalities(WebDriver webDriver) {
         this.webDriver = webDriver;
-        this.webDriverWait = new WebDriverWait(this.webDriver, Seconds);
+        this.webDriverWait = new WebDriverWait(webDriver, Seconds);
     }
     public WebDriver getWebDriver() {
         return webDriver;
