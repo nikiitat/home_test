@@ -1,6 +1,7 @@
 package supportfunctions;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,6 +26,15 @@ public class PageFunctionalities {
 
     public WebElement waitForElementVisible(WebElement element){
         return webDriverWait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public boolean isElementPresent(WebElement element){
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOf(element));
+            return true;
+        } catch (TimeoutException ex){
+            return false;
+        }
     }
 
     public WebElement waitForElementVisibleByCss(String element){

@@ -1,4 +1,4 @@
-package qa;
+package shopTests;
 
 
 import api.ErrorMessage;
@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import pageobjects.shopPages.MainPage;
 import pageobjects.shopPages.SignUpPage;
+import Base.TestBase;
 import supportfunctions.BrowserInitializer;
 
 

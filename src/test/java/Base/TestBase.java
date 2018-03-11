@@ -1,4 +1,4 @@
-package qa;
+package Base;
 
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;

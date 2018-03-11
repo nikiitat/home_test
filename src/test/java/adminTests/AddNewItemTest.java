@@ -1,4 +1,4 @@
-package qa;
+package adminTests;
 
 import api.ErrorMessage;
 import org.openqa.selenium.WebDriver;
@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import pageobjects.adminPages.AddNewProductPage;
 import pageobjects.adminPages.AdminPage;
 import pageobjects.adminPages.CatalogPage;
+import Base.TestBase;
 import supportfunctions.BrowserInitializer;
 
 /**
