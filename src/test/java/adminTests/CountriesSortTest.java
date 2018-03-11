@@ -4,11 +4,11 @@ package adminTests;
  * Created by nikitatertytskyi on 15.08.17.
  */
 
+import Base.TestBase;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import pageobjects.adminPages.AdminPage;
 import pageobjects.adminPages.CountriesPage;
-import Base.TestBase;
 import supportfunctions.BrowserInitializer;
 
 
@@ -18,7 +18,7 @@ public class CountriesSortTest extends TestBase {
     private CountriesPage countriesPage;
 
     public CountriesSortTest() {
-        webDriver =  BrowserInitializer.getWebDriver();
+        webDriver = BrowserInitializer.getWebDriver();
         adminPage = new AdminPage(webDriver);
         countriesPage = new CountriesPage(webDriver);
     }

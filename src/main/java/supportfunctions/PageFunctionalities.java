@@ -20,36 +20,37 @@ public class PageFunctionalities {
         this.webDriver = webDriver;
         this.webDriverWait = new WebDriverWait(webDriver, Seconds);
     }
+
     public WebDriver getWebDriver() {
         return webDriver;
     }
 
-    public WebElement waitForElementVisible(WebElement element){
+    public WebElement waitForElementVisible(WebElement element) {
         return webDriverWait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public boolean isElementPresent(WebElement element){
+    public boolean isElementPresent(WebElement element) {
         try {
             webDriverWait.until(ExpectedConditions.visibilityOf(element));
             return true;
-        } catch (TimeoutException ex){
+        } catch (TimeoutException ex) {
             return false;
         }
     }
 
-    public WebElement waitForElementVisibleByCss(String element){
+    public WebElement waitForElementVisibleByCss(String element) {
         return webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(element)));
     }
 
-    public WebElement waitForElementClickable(WebElement element){
+    public WebElement waitForElementClickable(WebElement element) {
         return webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public WebElement waitForElementClickableByCss(String element){
+    public WebElement waitForElementClickableByCss(String element) {
         return webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(element)));
     }
 
-    public WebElement isElementPresent(WebElement element, String cssString){
+    public WebElement isElementPresent(WebElement element, String cssString) {
         return webDriverWait.until(ExpectedConditions.visibilityOf(element.findElement(By.cssSelector(cssString))));
     }
 
