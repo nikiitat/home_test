@@ -1,14 +1,15 @@
-package qa;
+package adminTests;
 
 /**
  * Created by nikitatertytskyi on 15.08.17.
  */
 
+import Base.TestBase;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import pageobjects.adminPages.AdminPage;
-import pageobjects.BrowserInitializer;
 import pageobjects.adminPages.CountriesPage;
+import supportfunctions.BrowserInitializer;
 
 
 public class CountriesSortTest extends TestBase {
@@ -25,8 +26,9 @@ public class CountriesSortTest extends TestBase {
     @Test
     public void mySortingCountriesTest() {
         adminPage.login();
+        adminPage.openCatalogPage();
         countriesPage = adminPage.openCountriesPage();
-        countriesPage.sort();
+//        countriesPage.sort();
         countriesPage.logout();
     }
 

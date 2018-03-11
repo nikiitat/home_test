@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pageobjects.PageFunctionalities;
+import supportfunctions.PageFunctionalities;
 
 /**
  * Created by nikitatertytskyi on 15.08.17.
@@ -19,6 +19,9 @@ public class AdminPage extends PageFunctionalities {
     @FindBy(name = "login")
     private WebElement login;
 
+    @FindBy(css = ".header a:nth-child(2)")
+    private WebElement home;
+
     @FindBy(css = "a[href='http://localhost/litecart/admin/?app=catalog&doc=catalog']")
     private WebElement catalog;
 
@@ -32,16 +35,20 @@ public class AdminPage extends PageFunctionalities {
 
     public void login() {
         getWebDriver().navigate().to("http://localhost/litecart/admin/");
-        waitForElementVisible(username);
-        username.clear();
-        username.sendKeys("admin");
+        if (!isElementPresent(home)) {
+            waitForElementVisible(username);
+            username.clear();
+            username.sendKeys("admin");
 
-        waitForElementVisible(password);
-        password.clear();
-        password.sendKeys("admin");
+            waitForElementVisible(password);
+            password.clear();
+            password.sendKeys("admin");
 
-        waitForElementClickable(login);
-        login.click();
+            waitForElementClickable(login);
+            login.click();
+        } else {
+            home.click();
+        }
 //        assertTrue(isElementPresent(By.cssSelector("img[alt=\"My Store\"]")));
     }
 
