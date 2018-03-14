@@ -38,20 +38,13 @@ public class PageFunctionalities {
         }
     }
 
-    public WebElement waitForElementVisibleByCss(String element) {
-        return webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(element)));
+    public WebElement isElementPresent(WebElement element, String cssString) {
+        WebElement el = webDriverWait.until(ExpectedConditions.visibilityOf(element));
+        return webDriverWait.until(ExpectedConditions.visibilityOf((WebElement) new By.ByCssSelector(cssString)));
     }
 
     public WebElement waitForElementClickable(WebElement element) {
         return webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-
-    public WebElement waitForElementClickableByCss(String element) {
-        return webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(element)));
-    }
-
-    public WebElement isElementPresent(WebElement element, String cssString) {
-        return webDriverWait.until(ExpectedConditions.visibilityOf(element.findElement(By.cssSelector(cssString))));
     }
 
     public String getFieldValue(WebElement element, final String field) {
