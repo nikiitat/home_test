@@ -21,12 +21,8 @@ public class BrowserInitializer {
 
     }
 
-//    public static void initBrowser(final String browserName) {
-//        browser = browserName;
-//    }
-
     public static WebDriver getWebDriver() {
-        if (driver == null){
+        if (driver == null) {
             if (browser.equals(BrowserType.FIREFOX)) {
                 System.setProperty("webdriver.firefox.bin", "/Applications/Firefox 2.app/Contents/MacOS/firefox-bin");
                 driver = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
