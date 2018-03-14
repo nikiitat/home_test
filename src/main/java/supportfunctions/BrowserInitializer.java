@@ -33,6 +33,7 @@ public class BrowserInitializer {
             }
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().deleteAllCookies();
         PageFactory.initElements(driver, driver);
         return driver;
     }
