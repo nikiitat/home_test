@@ -117,8 +117,8 @@ public class AddNewProductPage extends PageFunctionalities {
         waitForElementVisible(uploadImage);
         uploadImage.sendKeys(Paths.get(System.getProperty("user.dir")) + "/Duck.png");
 
-        type(validFrom, "25.06.2017");
-        type(validTo, "25.08.2017");
+        typeDate(validFrom, "25.06.2017");
+        typeDate(validTo, "25.08.2017");
 
         click(information);
         Select manufacturer = new Select(waitForElementClickable(manufactureId));
@@ -144,6 +144,11 @@ public class AddNewProductPage extends PageFunctionalities {
 
         System.out.println("Press Save button");
         click(saveButton);
+    }
+
+    private void typeDate(WebElement validFrom, String text) {
+        click(validFrom);
+        validFrom.sendKeys(text);
     }
 
     public String errorDisplaySaveMessage() {

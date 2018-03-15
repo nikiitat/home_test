@@ -1,12 +1,13 @@
 package adminTests;
 
+import Base.TestBase;
 import api.ErrorMessage;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.adminPages.AddNewProductPage;
 import pageobjects.adminPages.AdminPage;
 import pageobjects.adminPages.CatalogPage;
-import Base.TestBase;
 import supportfunctions.BrowserInitializer;
 
 /**
@@ -19,7 +20,7 @@ public class AddNewItemTest extends TestBase {
     private AddNewProductPage addNewProductPage;
     private ErrorMessage errorMessage;
 
-    public AddNewItemTest(){
+    public AddNewItemTest() {
         webDriver = BrowserInitializer.getWebDriver();
         adminPage = new AdminPage(webDriver);
         catalogPage = new CatalogPage(webDriver);
@@ -28,11 +29,11 @@ public class AddNewItemTest extends TestBase {
     }
 
     @Test
-    public void addNewItem(){
+    public void addNewItem() {
         adminPage.login();
         catalogPage = adminPage.openCatalogPage();
-//        addNewProductPage = catalogPage.addNewProduct();
-//        addNewProductPage.addNewProduct();
-//        Assert.assertEquals(errorMessage.getSaveMessage(), addNewProductPage.errorDisplaySaveMessage());
+        addNewProductPage = catalogPage.addNewProduct();
+        addNewProductPage.addNewProduct();
+        Assert.assertEquals(errorMessage.getSaveMessage(), addNewProductPage.errorDisplaySaveMessage());
     }
 }
