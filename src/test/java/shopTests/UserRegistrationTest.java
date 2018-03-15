@@ -1,13 +1,16 @@
 package shopTests;
 
 
+import Base.TestBase;
 import api.ErrorMessage;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import pageobjects.shopPages.MainPage;
 import pageobjects.shopPages.SignUpPage;
-import Base.TestBase;
 import supportfunctions.BrowserInitializer;
+
+import static junit.framework.TestCase.assertTrue;
 
 
 /**
@@ -28,14 +31,14 @@ public class UserRegistrationTest extends TestBase {
     @Test
     public void registrationTest(){
         mainPage.openMainPage();
-//        signUpPage = mainPage.createAccount();
-//        mainPage = signUpPage.createTestAccount();
-//        Assert.assertEquals(errorMessage.getAccountCreatedMessage(), mainPage.getLoginLogoutMessage());
-//        mainPage.logoutWithCreatedAccount();
-//        Assert.assertEquals(errorMessage.getLogoutMessage(), mainPage.getLoginLogoutMessage());
-//        mainPage.loginWithCreatedAccount(signUpPage.getUserEmail(), signUpPage.getUserPass());
-//        assertTrue(mainPage.getLoginMessage());
-//        mainPage.logoutWithCreatedAccount();
-//        Assert.assertEquals(errorMessage.getLogoutMessage(), mainPage.getLoginLogoutMessage());
+        signUpPage = mainPage.createAccount();
+        mainPage = signUpPage.createTestAccount();
+        Assert.assertEquals(errorMessage.getAccountCreatedMessage(), mainPage.getLoginLogoutMessage());
+        mainPage.logoutWithCreatedAccount();
+        Assert.assertEquals(errorMessage.getLogoutMessage(), mainPage.getLoginLogoutMessage());
+        mainPage.loginWithCreatedAccount(signUpPage.getUserEmail(), signUpPage.getUserPass());
+        assertTrue(mainPage.getLoginMessage());
+        mainPage.logoutWithCreatedAccount();
+        Assert.assertEquals(errorMessage.getLogoutMessage(), mainPage.getLoginLogoutMessage());
     }
 }

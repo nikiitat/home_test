@@ -1,7 +1,6 @@
 package pageobjects.shopPages;
 
 import api.ProductAttributes;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -72,32 +71,23 @@ public class MainPage extends PageFunctionalities {
     }
 
     public ProductPage openProductPage() {
-        waitForElementVisible(firstElementInCampaigns);
-        firstElementInCampaigns.click();
+        click(firstElementInCampaigns);
         return new ProductPage(getWebDriver());
     }
 
     public SignUpPage createAccount() {
-        waitForElementClickable(createAccount);
-        createAccount.click();
+        click(createAccount);
         return new SignUpPage(getWebDriver());
     }
 
     public void logoutWithCreatedAccount() {
-        waitForElementClickable(logout);
-        logout.click();
+        click(logout);
     }
 
     public void loginWithCreatedAccount(String userEmail, String pass) {
-        waitForElementVisible(email);
-        email.click();
-        email.clear();
-        email.sendKeys(userEmail);
-        password.click();
-        password.clear();
-        password.sendKeys(pass);
-        waitForElementClickable(login);
-        login.click();
+        type(email, userEmail);
+        type(password, pass);
+        click(login);
     }
 
     public String getLoginLogoutMessage() {

@@ -60,17 +60,17 @@ public class SignUpPage extends PageFunctionalities {
     @FindBy(css = "div#main div#notices-wrapper")
     private WebElement loginM;
 
-    public SignUpPage (WebDriver webDriver){
+    public SignUpPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(getWebDriver(), this);
     }
 
-    public MainPage createTestAccount(){
-        fillFields(firstName, "Test");
-        fillFields(lastName, "Test");
-        fillFields(address1, "Street1");
-        fillFields(postcode, "09100");
-        fillFields(city,"Alabama");
+    public MainPage createTestAccount() {
+        type(firstName, "Test");
+        type(lastName, "Test");
+        type(address1, "Street1");
+        type(postcode, "09100");
+        type(city, "Alabama");
 
         Actions actions = new Actions(getWebDriver());
         actions.moveToElement(waitForElementClickable(selector));
@@ -80,39 +80,31 @@ public class SignUpPage extends PageFunctionalities {
         actions.perform();
 
         userEmail = generateUserEmail();
-        fillFields(email, userEmail);
-        fillFields(phone,"123456789");
-        fillFields(password, pass);
-        fillFields(confirmedPass, pass);
-        clickSignButton();
+        type(email, userEmail);
+        type(phone, "123456789");
+        type(password, pass);
+        type(confirmedPass, pass);
+        click(createAccountB);
         System.out.print(userEmail);
         return new MainPage(getWebDriver());
     }
 
-    public String getUserEmail(){return userEmail;}
+    public String getUserEmail() {
+        return userEmail;
+    }
 
-    public String getUserPass(){return pass;}
+    public String getUserPass() {
+        return pass;
+    }
 
-    public String getLoginMessage(){
+    public String getLoginMessage() {
         return loginMessage;
     }
 
-    private String generateUserEmail(){
+    private String generateUserEmail() {
         final SimpleDateFormat formater = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
         final Calendar calendar = Calendar.getInstance();
         final String autoGenerateEmail = MAIL_Head + formater.format(calendar.getTime()) + MAIL_TAIL;
         return autoGenerateEmail;
-    }
-
-    private void fillFields (WebElement element, String string){
-        waitForElementVisible(element);
-        element.click();
-        element.clear();
-        element.sendKeys(string);
-    }
-
-    private void clickSignButton(){
-        waitForElementVisible(createAccountB);
-        createAccountB.click();
     }
 }

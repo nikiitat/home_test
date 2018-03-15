@@ -1,6 +1,5 @@
 package supportfunctions;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -44,5 +43,16 @@ public class PageFunctionalities {
 
     public String getFieldValue(WebElement element) {
         return waitForElementVisible(element).getAttribute("textContent");
+    }
+
+    public void type(WebElement element, String text) {
+        click(element);
+        element.clear();
+        element.sendKeys(text);
+    }
+
+    public void click(WebElement element) {
+        waitForElementClickable(element);
+        element.click();
     }
 }
