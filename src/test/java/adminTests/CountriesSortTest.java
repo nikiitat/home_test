@@ -28,7 +28,7 @@ public class CountriesSortTest extends TestBase {
         adminPage.login();
         adminPage.openCatalogPage();
         countriesPage = adminPage.openCountriesPage();
-//        countriesPage.sort();
+        countriesPage.sort();
         countriesPage.logout();
     }
 
