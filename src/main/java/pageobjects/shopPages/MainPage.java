@@ -1,6 +1,7 @@
 package pageobjects.shopPages;
 
 import api.ProductAttributes;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,6 +36,14 @@ public class MainPage extends PageFunctionalities {
     @FindBy(css = "div#box-campaigns.box ul.listing-wrapper.products a:first-child")
     private WebElement firstElementInCampaigns;
 
+    @FindBy(css = "div#box-campaigns.box ul.listing-wrapper.products a:first-child div.name")
+    private WebElement name;
+
+    @FindBy(css = "div#box-campaigns.box ul.listing-wrapper.products a:first-child s.regular-price")
+    private WebElement oldPrice1;
+
+    @FindBy(css = "div#box-campaigns.box ul.listing-wrapper.products a:first-child strong.campaign-price")
+    private WebElement newPrice1;
 
     public MainPage(WebDriver webDriver) {
         super(webDriver);
@@ -42,18 +51,18 @@ public class MainPage extends PageFunctionalities {
     }
 
     public ProductAttributes getProductAttributes() {
-        String title = getFieldValue(firstElementInCampaigns, "div.name");
-        String oldPrice = getFieldValue(firstElementInCampaigns, "s");
-        String newPrice = getFieldValue(firstElementInCampaigns, "strong");
+        String title = getFieldValue(name);
+        String oldPrice = getFieldValue(oldPrice1);
+        String newPrice = getFieldValue(newPrice1);
         return new ProductAttributes(title, oldPrice, newPrice);
     }
 
     public List<String> firstItemAttribute() {
         waitForElementVisible(firstElementInCampaigns);
         List<String> firstItem = new ArrayList<>();
-        firstItem.add(getFieldValue(firstElementInCampaigns, "div.name"));
-        firstItem.add(getFieldValue(firstElementInCampaigns, "s"));
-        firstItem.add(getFieldValue(firstElementInCampaigns, "strong"));
+        firstItem.add(getFieldValue(name));
+        firstItem.add(getFieldValue(oldPrice1));
+        firstItem.add(getFieldValue(newPrice1));
 
         return (firstItem);
     }

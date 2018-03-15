@@ -38,21 +38,11 @@ public class PageFunctionalities {
         }
     }
 
-    public WebElement isElementPresent(WebElement element, String cssString) {
-        WebElement el = webDriverWait.until(ExpectedConditions.visibilityOf(element));
-        return webDriverWait.until(ExpectedConditions.visibilityOf((WebElement) new By.ByCssSelector(cssString)));
-    }
-
     public WebElement waitForElementClickable(WebElement element) {
         return webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public String getFieldValue(WebElement element, final String field) {
-        inputField = isElementPresent(element, field);
-        return inputField.getAttribute("textContent");
-    }
-
     public String getFieldValue(WebElement element) {
-        return element.getAttribute("textContent");
+        return waitForElementVisible(element).getAttribute("textContent");
     }
 }
