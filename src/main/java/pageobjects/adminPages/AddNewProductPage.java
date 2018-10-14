@@ -14,7 +14,8 @@ import java.nio.file.Paths;
  * Created by nikitatertytskyi on 10.09.17.
  */
 public class AddNewProductPage extends PageFunctionalities {
-    private  String newItem = "Donald duck";
+    private static final int TIMEOUT = 10;
+    private String newItem = "Donald duck";
 
     @FindBy(name = "status")
     private WebElement status;
@@ -88,99 +89,71 @@ public class AddNewProductPage extends PageFunctionalities {
     @FindBy(name = "date_valid_to")
     private WebElement validTo;
 
-    public AddNewProductPage(WebDriver webDriver){
+    public AddNewProductPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(getWebDriver(), this);
     }
 
-    public void addNewProduct(){
-        waitForElementClickable(status);
-        status.click();
-        waitForElementClickable(name);
-        name.click();
-        name.clear();
-        name.sendKeys("Donald duck");
-        waitForElementClickable(code);
-        code.click();
-        code.clear();
-        code.sendKeys("777");
-        waitForElementClickable(rubberDStatus);
+    public void addNewProduct() {
+        click(status);
+        type(name, "Donald duck");
+        type(code, "777");
+
+        waitForElementClickable(rubberDStatus, TIMEOUT);
         String rubberDuckStatus = rubberDStatus.getAttribute("checked");
-        if (rubberDuckStatus == null){
+        if (rubberDuckStatus == null) {
             rubberDStatus.click();
         }
         String mainStatusAttribute = mainStatus.getAttribute("checked");
-        if (mainStatusAttribute != null){
+        if (mainStatusAttribute != null) {
             mainStatus.click();
         }
-        waitForElementClickable(quantity);
-        quantity.click();
-        quantity.clear();
-        quantity.sendKeys("7");
-        waitForElementClickable(productGroups);
-        productGroups.click();
+        type(quantity, "7");
+        click(productGroups);
 
-        waitForElementClickable(soldOutStatus);
+        waitForElementClickable(soldOutStatus, TIMEOUT);
         Select soldOut = new Select(soldOutStatus);
         soldOut.selectByValue("2");
 
-        waitForElementVisible(uploadImage);
+        waitForElementToBeVisible(uploadImage, TIMEOUT);
         uploadImage.sendKeys(Paths.get(System.getProperty("user.dir")) + "/Duck.png");
 
-        waitForElementClickable(validFrom);
-        validFrom.sendKeys("25.06.2017");
+        typeDate(validFrom, "25.06.2017");
+        typeDate(validTo, "25.08.2017");
 
-        waitForElementClickable(validTo);
-        validTo.sendKeys("25.08.2017");
-
-        waitForElementClickable(information);
-        information.click();
-
-        Select manufacturer = new Select(waitForElementClickable(manufactureId));
+        click(information);
+        Select manufacturer = new Select(waitForElementClickable(manufactureId, TIMEOUT));
         manufacturer.selectByValue("1");
 
-        waitForElementVisible(informationInput);
-        informationInput.sendKeys("Donald Duck");
+        type(informationInput, "Donald Duck");
+        type(shortDescription, "Donald Duck from cartoon)");
 
-        waitForElementVisible(shortDescription);
-        shortDescription.sendKeys("Donald Duck from cartoon)");
-
-
-        waitForElementClickable(description);
-        description.click();
+        click(description);
         description.sendKeys("Donald Duck best toy for your kid!");
         description.sendKeys(Keys.ENTER);
         description.sendKeys("Donald Duck is a cartoon character created in 1934 at Walt Disney Productions. Donald is an anthropomorphic white duck with a yellow-orange bill, legs, and feet. He typically wears a sailor shirt and cap with a bow tie");
 
-        waitForElementVisible(headTitle);
-        headTitle.sendKeys(newItem);
+        type(headTitle, newItem);
+        type(metaDescription, newItem);
 
-        waitForElementVisible(metaDescription);
-        metaDescription.sendKeys(newItem);
+        click(tabPrices);
+        type(price, "100");
 
-        waitForElementClickable(tabPrices);
-        tabPrices.click();
-
-        waitForElementClickable(price);
-        price.click();
-        price.clear();
-        price.sendKeys("100");
-
-        Select currency = new Select (waitForElementClickable(currencyPrice));
+        Select currency = new Select(waitForElementClickable(currencyPrice, TIMEOUT));
         currency.selectByValue("USD");
-
-        waitForElementClickable(price2);
-        price2.click();
-        price2.clear();
-        price2.sendKeys("100");
+        type(price2, "100");
 
         System.out.println("Press Save button");
-        waitForElementClickable(saveButton);
-        saveButton.click();
+        click(saveButton);
     }
 
-    public String errorDisplaySaveMessage(){
-        waitForElementVisible(message);
+    private void typeDate(WebElement validFrom, String text) {
+        click(validFrom);
+        validFrom.sendKeys(text);
+    }
+
+    public String errorDisplaySaveMessage() {
+        waitForElementToBeVisible(message, TIMEOUT);
         return message.getText();
     }
 }

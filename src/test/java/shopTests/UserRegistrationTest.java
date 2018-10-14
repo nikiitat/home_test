@@ -1,13 +1,16 @@
 package shopTests;
 
 
-import api.ErrorMessage;
+import Base.TestBase;
+import modules.ErrorMessages;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import pageobjects.shopPages.MainPage;
 import pageobjects.shopPages.SignUpPage;
-import Base.TestBase;
 import supportfunctions.BrowserInitializer;
+
+import static junit.framework.TestCase.assertTrue;
 
 
 /**
@@ -17,25 +20,25 @@ public class UserRegistrationTest extends TestBase {
     private final WebDriver webDriver;
     private MainPage mainPage;
     private SignUpPage signUpPage;
-    private ErrorMessage errorMessage;
+    private ErrorMessages errorMessages;
 
     public UserRegistrationTest(){
         webDriver = BrowserInitializer.getWebDriver();
         mainPage = new MainPage(webDriver);
         signUpPage = new SignUpPage(webDriver);
-        errorMessage = new ErrorMessage(webDriver);
+        errorMessages = new ErrorMessages(webDriver);
     }
     @Test
     public void registrationTest(){
         mainPage.openMainPage();
-//        signUpPage = mainPage.createAccount();
-//        mainPage = signUpPage.createTestAccount();
-//        Assert.assertEquals(errorMessage.getAccountCreatedMessage(), mainPage.getLoginLogoutMessage());
-//        mainPage.logoutWithCreatedAccount();
-//        Assert.assertEquals(errorMessage.getLogoutMessage(), mainPage.getLoginLogoutMessage());
-//        mainPage.loginWithCreatedAccount(signUpPage.getUserEmail(), signUpPage.getUserPass());
-//        assertTrue(mainPage.getLoginMessage());
-//        mainPage.logoutWithCreatedAccount();
-//        Assert.assertEquals(errorMessage.getLogoutMessage(), mainPage.getLoginLogoutMessage());
+        signUpPage = mainPage.createAccount();
+        mainPage = signUpPage.createTestAccount();
+        Assert.assertEquals(errorMessages.getAccountCreatedMessage(), mainPage.getLoginLogoutMessage());
+        mainPage.logoutWithCreatedAccount();
+        Assert.assertEquals(errorMessages.getLogoutMessage(), mainPage.getLoginLogoutMessage());
+        mainPage.loginWithCreatedAccount(signUpPage.getUserEmail(), signUpPage.getUserPass());
+        assertTrue(mainPage.getLoginMessage());
+        mainPage.logoutWithCreatedAccount();
+        Assert.assertEquals(errorMessages.getLogoutMessage(), mainPage.getLoginLogoutMessage());
     }
 }

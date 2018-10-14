@@ -10,6 +10,8 @@ import supportfunctions.PageFunctionalities;
  * Created by nikitatertytskyi on 15.08.17.
  */
 public class AdminPage extends PageFunctionalities {
+    private static final int TIMEOUT = 10;
+
     @FindBy(name = "username")
     private WebElement username;
 
@@ -35,17 +37,10 @@ public class AdminPage extends PageFunctionalities {
 
     public void login() {
         getWebDriver().navigate().to("http://localhost/litecart/admin/");
-        if (!isElementPresent(home)) {
-            waitForElementVisible(username);
-            username.clear();
-            username.sendKeys("admin");
-
-            waitForElementVisible(password);
-            password.clear();
-            password.sendKeys("admin");
-
-            waitForElementClickable(login);
-            login.click();
+        if (!waitForElementToBeVisible(home, TIMEOUT)) {
+            type(username, "admin");
+            type(password, "admin");
+            click(login);
         } else {
             home.click();
         }
@@ -53,14 +48,12 @@ public class AdminPage extends PageFunctionalities {
     }
 
     public CatalogPage openCatalogPage() {
-        waitForElementClickable(catalog);
-        catalog.click();
+        click(catalog);
         return new CatalogPage(getWebDriver());
     }
 
     public CountriesPage openCountriesPage() {
-        waitForElementClickable(countries);
-        countries.click();
+        click(countries);
         return new CountriesPage(getWebDriver());
     }
 }

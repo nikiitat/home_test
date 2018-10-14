@@ -1,6 +1,6 @@
 package pageobjects.shopPages;
 
-import api.ProductAttributes;
+import modules.ProductAttributes;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +14,8 @@ import java.util.List;
  * Created by nikitatertytskyi on 26.08.17.
  */
 public class MainPage extends PageFunctionalities {
+    private static final int TIMEOUT = 10;
+
     @FindBy(css = "a[href*=create_account]")
     private WebElement createAccount;
 
@@ -35,6 +37,14 @@ public class MainPage extends PageFunctionalities {
     @FindBy(css = "div#box-campaigns.box ul.listing-wrapper.products a:first-child")
     private WebElement firstElementInCampaigns;
 
+    @FindBy(css = "div#box-campaigns.box ul.listing-wrapper.products a:first-child div.name")
+    private WebElement name;
+
+    @FindBy(css = "div#box-campaigns.box ul.listing-wrapper.products a:first-child s.regular-price")
+    private WebElement oldPrice1;
+
+    @FindBy(css = "div#box-campaigns.box ul.listing-wrapper.products a:first-child strong.campaign-price")
+    private WebElement newPrice1;
 
     public MainPage(WebDriver webDriver) {
         super(webDriver);
@@ -42,18 +52,18 @@ public class MainPage extends PageFunctionalities {
     }
 
     public ProductAttributes getProductAttributes() {
-        String title = getFieldValue(firstElementInCampaigns, "div.name");
-        String oldPrice = getFieldValue(firstElementInCampaigns, "s");
-        String newPrice = getFieldValue(firstElementInCampaigns, "strong");
+        String title = getFieldValue(name);
+        String oldPrice = getFieldValue(oldPrice1);
+        String newPrice = getFieldValue(newPrice1);
         return new ProductAttributes(title, oldPrice, newPrice);
     }
 
     public List<String> firstItemAttribute() {
-        waitForElementVisible(firstElementInCampaigns);
+        waitForElementToBeVisible(firstElementInCampaigns, TIMEOUT);
         List<String> firstItem = new ArrayList<>();
-        firstItem.add(getFieldValue(firstElementInCampaigns, "div.name"));
-        firstItem.add(getFieldValue(firstElementInCampaigns, "s"));
-        firstItem.add(getFieldValue(firstElementInCampaigns, "strong"));
+        firstItem.add(getFieldValue(name));
+        firstItem.add(getFieldValue(oldPrice1));
+        firstItem.add(getFieldValue(newPrice1));
 
         return (firstItem);
     }
@@ -63,41 +73,32 @@ public class MainPage extends PageFunctionalities {
     }
 
     public ProductPage openProductPage() {
-        waitForElementVisible(firstElementInCampaigns);
-        firstElementInCampaigns.click();
+        click(firstElementInCampaigns);
         return new ProductPage(getWebDriver());
     }
 
     public SignUpPage createAccount() {
-        waitForElementClickable(createAccount);
-        createAccount.click();
+        click(createAccount);
         return new SignUpPage(getWebDriver());
     }
 
     public void logoutWithCreatedAccount() {
-        waitForElementClickable(logout);
-        logout.click();
+        click(logout);
     }
 
     public void loginWithCreatedAccount(String userEmail, String pass) {
-        waitForElementVisible(email);
-        email.click();
-        email.clear();
-        email.sendKeys(userEmail);
-        password.click();
-        password.clear();
-        password.sendKeys(pass);
-        waitForElementClickable(login);
-        login.click();
+        type(email, userEmail);
+        type(password, pass);
+        click(login);
     }
 
     public String getLoginLogoutMessage() {
-        waitForElementVisible(loginLogoutMessage);
+        waitForElementToBeVisible(loginLogoutMessage, TIMEOUT);
         return loginLogoutMessage.getText();
     }
 
     public boolean getLoginMessage() {
-        waitForElementVisible(loginLogoutMessage);
+        waitForElementToBeVisible(loginLogoutMessage, TIMEOUT);
         if (loginLogoutMessage.getText().contains("You are now logged in")) {
             return true;
         }

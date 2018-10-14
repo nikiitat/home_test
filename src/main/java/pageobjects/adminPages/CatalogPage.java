@@ -20,8 +20,7 @@ public class CatalogPage extends PageFunctionalities {
     }
 
     public AddNewProductPage addNewProduct() {
-        waitForElementClickable(addNewProduct);
-        addNewProduct.click();
+        click(addNewProduct);
         return new AddNewProductPage(getWebDriver());
     }
 }

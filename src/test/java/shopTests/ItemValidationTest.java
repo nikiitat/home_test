@@ -1,7 +1,7 @@
 package shopTests;
 
 import Base.TestBase;
-import api.ProductAttributes;
+import modules.ProductAttributes;
 import org.hamcrest.core.Is;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
@@ -20,7 +20,7 @@ public class ItemValidationTest extends TestBase {
     private ProductPage productPage;
 
     public ItemValidationTest() {
-        webDriver = BrowserInitializer.getWebDriver();
+        this.webDriver = BrowserInitializer.getWebDriver();
         mainPage = new MainPage(webDriver);
         productPage = new ProductPage(webDriver);
     }

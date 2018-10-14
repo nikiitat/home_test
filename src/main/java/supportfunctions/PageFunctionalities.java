@@ -1,6 +1,5 @@
 package supportfunctions;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,47 +11,42 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class PageFunctionalities {
     private final WebDriver webDriver;
-    private final WebDriverWait webDriverWait;
-    private final int Seconds = 10;
+    private static final int TIMEOUT = 10;
     private WebElement inputField;
 
     public PageFunctionalities(WebDriver webDriver) {
         this.webDriver = webDriver;
-        this.webDriverWait = new WebDriverWait(webDriver, Seconds);
     }
 
     public WebDriver getWebDriver() {
         return webDriver;
     }
 
-    public WebElement waitForElementVisible(WebElement element) {
-        return webDriverWait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public boolean isElementPresent(WebElement element) {
+    public boolean waitForElementToBeVisible(WebElement element, int TIMEOUT) {
         try {
-            webDriverWait.until(ExpectedConditions.visibilityOf(element));
+            new WebDriverWait(webDriver, TIMEOUT).until(ExpectedConditions.visibilityOf(element));
             return true;
         } catch (TimeoutException ex) {
             return false;
         }
     }
 
-    public WebElement isElementPresent(WebElement element, String cssString) {
-        WebElement el = webDriverWait.until(ExpectedConditions.visibilityOf(element));
-        return webDriverWait.until(ExpectedConditions.visibilityOf((WebElement) new By.ByCssSelector(cssString)));
-    }
-
-    public WebElement waitForElementClickable(WebElement element) {
-        return webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-
-    public String getFieldValue(WebElement element, final String field) {
-        inputField = isElementPresent(element, field);
-        return inputField.getAttribute("textContent");
+    public WebElement waitForElementClickable(WebElement element, int TIMEOUT) {
+        return new WebDriverWait(webDriver, TIMEOUT).until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public String getFieldValue(WebElement element) {
         return element.getAttribute("textContent");
+    }
+
+    public void type(WebElement element, String text) {
+        click(element);
+        element.clear();
+        element.sendKeys(text);
+    }
+
+    public void click(WebElement element) {
+        waitForElementClickable(element, TIMEOUT);
+        element.click();
     }
 }
