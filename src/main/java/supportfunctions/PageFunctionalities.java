@@ -11,38 +11,32 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class PageFunctionalities {
     private final WebDriver webDriver;
-    private final WebDriverWait webDriverWait;
-    private final int Seconds = 10;
+    private static final int TIMEOUT = 10;
     private WebElement inputField;
 
     public PageFunctionalities(WebDriver webDriver) {
         this.webDriver = webDriver;
-        this.webDriverWait = new WebDriverWait(webDriver, Seconds);
     }
 
     public WebDriver getWebDriver() {
         return webDriver;
     }
 
-    public WebElement waitForElementVisible(WebElement element) {
-        return webDriverWait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public boolean isElementPresent(WebElement element) {
+    public boolean waitForElementToBeVisible(WebElement element, int TIMEOUT) {
         try {
-            webDriverWait.until(ExpectedConditions.visibilityOf(element));
+            new WebDriverWait(webDriver, TIMEOUT).until(ExpectedConditions.visibilityOf(element));
             return true;
         } catch (TimeoutException ex) {
             return false;
         }
     }
 
-    public WebElement waitForElementClickable(WebElement element) {
-        return webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+    public WebElement waitForElementClickable(WebElement element, int TIMEOUT) {
+        return new WebDriverWait(webDriver, TIMEOUT).until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public String getFieldValue(WebElement element) {
-        return waitForElementVisible(element).getAttribute("textContent");
+        return element.getAttribute("textContent");
     }
 
     public void type(WebElement element, String text) {
@@ -52,7 +46,7 @@ public class PageFunctionalities {
     }
 
     public void click(WebElement element) {
-        waitForElementClickable(element);
+        waitForElementClickable(element, TIMEOUT);
         element.click();
     }
 }

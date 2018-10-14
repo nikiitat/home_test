@@ -14,6 +14,7 @@ import java.nio.file.Paths;
  * Created by nikitatertytskyi on 10.09.17.
  */
 public class AddNewProductPage extends PageFunctionalities {
+    private static final int TIMEOUT = 10;
     private String newItem = "Donald duck";
 
     @FindBy(name = "status")
@@ -98,7 +99,7 @@ public class AddNewProductPage extends PageFunctionalities {
         type(name, "Donald duck");
         type(code, "777");
 
-        waitForElementClickable(rubberDStatus);
+        waitForElementClickable(rubberDStatus, TIMEOUT);
         String rubberDuckStatus = rubberDStatus.getAttribute("checked");
         if (rubberDuckStatus == null) {
             rubberDStatus.click();
@@ -110,18 +111,18 @@ public class AddNewProductPage extends PageFunctionalities {
         type(quantity, "7");
         click(productGroups);
 
-        waitForElementClickable(soldOutStatus);
+        waitForElementClickable(soldOutStatus, TIMEOUT);
         Select soldOut = new Select(soldOutStatus);
         soldOut.selectByValue("2");
 
-        waitForElementVisible(uploadImage);
+        waitForElementToBeVisible(uploadImage, TIMEOUT);
         uploadImage.sendKeys(Paths.get(System.getProperty("user.dir")) + "/Duck.png");
 
         typeDate(validFrom, "25.06.2017");
         typeDate(validTo, "25.08.2017");
 
         click(information);
-        Select manufacturer = new Select(waitForElementClickable(manufactureId));
+        Select manufacturer = new Select(waitForElementClickable(manufactureId, TIMEOUT));
         manufacturer.selectByValue("1");
 
         type(informationInput, "Donald Duck");
@@ -138,7 +139,7 @@ public class AddNewProductPage extends PageFunctionalities {
         click(tabPrices);
         type(price, "100");
 
-        Select currency = new Select(waitForElementClickable(currencyPrice));
+        Select currency = new Select(waitForElementClickable(currencyPrice, TIMEOUT));
         currency.selectByValue("USD");
         type(price2, "100");
 
@@ -152,7 +153,7 @@ public class AddNewProductPage extends PageFunctionalities {
     }
 
     public String errorDisplaySaveMessage() {
-        waitForElementVisible(message);
+        waitForElementToBeVisible(message, TIMEOUT);
         return message.getText();
     }
 }

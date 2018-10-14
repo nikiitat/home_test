@@ -1,4 +1,4 @@
-package api;
+package modules;
 
 /**
  * Created by nikitatertytskyi on 17.12.17.

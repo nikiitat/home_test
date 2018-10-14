@@ -17,6 +17,7 @@ import java.util.Calendar;
 public class SignUpPage extends PageFunctionalities {
     public static final String MAIL_TAIL = "@seleniumTest.com";
     public static final String MAIL_Head = "TESTUSER";
+    private static final int TIMEOUT = 10;
 
     private String pass = "1234";
     private String userEmail;
@@ -73,7 +74,7 @@ public class SignUpPage extends PageFunctionalities {
         type(city, "Alabama");
 
         Actions actions = new Actions(getWebDriver());
-        actions.moveToElement(waitForElementClickable(selector));
+        actions.moveToElement(waitForElementClickable(selector, TIMEOUT));
         actions.click();
         actions.sendKeys("United States");
         actions.sendKeys(Keys.ENTER);

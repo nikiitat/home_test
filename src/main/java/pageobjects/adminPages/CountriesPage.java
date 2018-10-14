@@ -17,6 +17,7 @@ import static org.testng.Assert.assertTrue;
  * Created by nikitatertytskyi on 13.12.17.
  */
 public class CountriesPage extends PageFunctionalities {
+    private static final int TIMEOUT = 10;
 
     @FindBy(css = "a[href='http://localhost/litecart/admin/logout.php']")
     private WebElement logout;
@@ -27,7 +28,7 @@ public class CountriesPage extends PageFunctionalities {
     }
 
     public void logout() {
-        waitForElementVisible(logout);
+        waitForElementToBeVisible(logout, TIMEOUT);
         logout.click();
     }
 

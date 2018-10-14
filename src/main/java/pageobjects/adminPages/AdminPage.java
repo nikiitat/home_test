@@ -10,6 +10,8 @@ import supportfunctions.PageFunctionalities;
  * Created by nikitatertytskyi on 15.08.17.
  */
 public class AdminPage extends PageFunctionalities {
+    private static final int TIMEOUT = 10;
+
     @FindBy(name = "username")
     private WebElement username;
 
@@ -35,7 +37,7 @@ public class AdminPage extends PageFunctionalities {
 
     public void login() {
         getWebDriver().navigate().to("http://localhost/litecart/admin/");
-        if (!isElementPresent(home)) {
+        if (!waitForElementToBeVisible(home, TIMEOUT)) {
             type(username, "admin");
             type(password, "admin");
             click(login);

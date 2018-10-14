@@ -1,6 +1,6 @@
 package pageobjects.shopPages;
 
-import api.ProductAttributes;
+import modules.ProductAttributes;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +14,8 @@ import java.util.List;
  * Created by nikitatertytskyi on 26.08.17.
  */
 public class MainPage extends PageFunctionalities {
+    private static final int TIMEOUT = 10;
+
     @FindBy(css = "a[href*=create_account]")
     private WebElement createAccount;
 
@@ -57,7 +59,7 @@ public class MainPage extends PageFunctionalities {
     }
 
     public List<String> firstItemAttribute() {
-        waitForElementVisible(firstElementInCampaigns);
+        waitForElementToBeVisible(firstElementInCampaigns, TIMEOUT);
         List<String> firstItem = new ArrayList<>();
         firstItem.add(getFieldValue(name));
         firstItem.add(getFieldValue(oldPrice1));
@@ -91,12 +93,12 @@ public class MainPage extends PageFunctionalities {
     }
 
     public String getLoginLogoutMessage() {
-        waitForElementVisible(loginLogoutMessage);
+        waitForElementToBeVisible(loginLogoutMessage, TIMEOUT);
         return loginLogoutMessage.getText();
     }
 
     public boolean getLoginMessage() {
-        waitForElementVisible(loginLogoutMessage);
+        waitForElementToBeVisible(loginLogoutMessage, TIMEOUT);
         if (loginLogoutMessage.getText().contains("You are now logged in")) {
             return true;
         }

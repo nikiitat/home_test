@@ -1,7 +1,6 @@
 package pageobjects.shopPages;
 
-import api.ProductAttributes;
-import org.openqa.selenium.By;
+import modules.ProductAttributes;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +11,8 @@ import supportfunctions.PageFunctionalities;
  * Created by nikitatertytskyi on 17.12.17.
  */
 public class ProductPage extends PageFunctionalities {
+    private static final int TIMEOUT = 10;
+
     @FindBy(css = "div#box-product.box h1.title")
     private WebElement titleItem;
 
@@ -30,7 +31,7 @@ public class ProductPage extends PageFunctionalities {
     }
 
     public ProductAttributes getProductAttributes() {
-        waitForElementVisible(titleItem);
+        waitForElementToBeVisible(titleItem, TIMEOUT);
         String title = getFieldValue(titleItem);
         String oldPrice = getFieldValue(regularPrice);
         String newPrice = getFieldValue(campaignPrice);
